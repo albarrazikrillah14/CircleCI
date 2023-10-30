@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Github User</string>
+    <string name="search">Search</string>
+    <string name="search_hint">hint</string>
+    <string name="name_github">Nama Pengguna</string>
+    <string name="username_github">Username Pengguna</string>
+    <string name="followers_user">X Followers</string>
+    <string name="following_user">X Following</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="favorite">Favorite User</string>
+    <string name="detail">Detail User</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="data_kosong">Data Kosong</string>
+    <string name="dev">Developer</string>
+    <string name="followers_count">%d Followers</string>
+    <string name="following_count">%d Following</string>
+    <string name="profile_image">profile image</string>
+    <string name="dev_name">Albarra Zikrillah</string>
+    <string name="splashscreen">splashscreen</string>
+    <string name="software_developer">Software Developer</string>
+    <string name="empty_data">data kosong, lakukan pencarian!</string>
+    <string name="error">Teraradian Kesalahan!</string>
+    <string name="power_connected">Power Connected!</string>
+    <string name="power_disconnected">Power Disconnected!</string>
+</resources>

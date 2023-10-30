@@ -1,0 +1,37 @@
+<!-- res/layout/profile_card.xml -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/zikriqq"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:contentDescription="@string/profile_image" />
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/profileImage"
+        android:layout_marginStart="16dp"
+        android:text="@string/dev_name"
+        android:textSize="18sp"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileName"
+        android:layout_toEndOf="@id/profileImage"
+        android:layout_marginStart="16dp"
+        android:text="@string/software_developer"
+        android:textSize="14sp"
+        android:textColor="#666666"/>
+
+</RelativeLayout>
