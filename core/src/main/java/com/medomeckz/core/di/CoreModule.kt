@@ -1,12 +1,13 @@
+package com.danrsy.rgithubuser.core.di
+
 import androidx.room.Room
+import com.medomeckz.core.BuildConfig
 import com.medomeckz.core.data.UserRepository
 import com.medomeckz.core.data.source.local.LocalDataSource
 import com.medomeckz.core.data.source.local.room.UserDatabase
 import com.medomeckz.core.data.source.remote.RemoteDataSource
 import com.medomeckz.core.data.source.remote.network.ApiService
 import com.medomeckz.core.domain.repository.IUserRepository
-import com.medomeckz.core.utils.Constant
-import de.hdodenhof.circleimageview.BuildConfig
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 import okhttp3.CertificatePinner
@@ -22,8 +23,9 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<UserDatabase>().userDao() }
     single {
-        val passphrase: ByteArray = SQLiteDatabase.getBytes("medomeckz".toCharArray())
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("danrsy".toCharArray())
         val factory = SupportFactory(passphrase)
+
         Room.databaseBuilder(
             androidContext(),
             UserDatabase::class.java,
@@ -40,21 +42,21 @@ val networkModule = module {
         val certificatePinner = CertificatePinner.Builder()
             .add(hostname, "sha256/jFaeVpA8UQuidlJkkpIdq3MPwD0m8XbuCRbJlezysBE=")
             .add(hostname, "sha256/Jg78dOE+fydIGk19swWwiypUSR6HWZybfnJG/8G7pyM=")
-            .add(hostname, "sha256/e0IRz5Tio3GA1Xs4fUVWmH1xHDiH2dMbVtCBSkOIdqM=")
             .build()
-
-        val authInterceptor = Interceptor { chain ->
-            val req = chain.request()
-            val requestHeaders = req.newBuilder()
-                .addHeader("Authorization", "token " + Constant.KEY)
-                .build()
-            chain.proceed(requestHeaders)
-        }
 
         val loggingInterceptor = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         } else {
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+
+        val authInterceptor = Interceptor { chain ->
+            val originalRequest = chain.request()
+            val requestWithAuth = originalRequest.newBuilder()
+                .header("Authorization", BuildConfig.KEY)
+                .build()
+
+            chain.proceed(requestWithAuth)
         }
 
         OkHttpClient.Builder()
@@ -65,10 +67,9 @@ val networkModule = module {
             .certificatePinner(certificatePinner)
             .build()
     }
-
     single {
         val retrofit = Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
@@ -79,10 +80,7 @@ val networkModule = module {
 val repositoryModule = module {
     single { LocalDataSource(get()) }
     single { RemoteDataSource(get()) }
-    single<IUserRepository> {
-        UserRepository(
-            get(),
-            get()
-        )
-    }
+    single<IUserRepository> { UserRepository(get(), get())}
 }
+
+

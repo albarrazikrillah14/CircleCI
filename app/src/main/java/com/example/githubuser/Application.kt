@@ -1,15 +1,15 @@
 package com.example.githubuser
 
 import android.app.Application
+import com.danrsy.rgithubuser.core.di.databaseModule
+import com.danrsy.rgithubuser.core.di.networkModule
+import com.danrsy.rgithubuser.core.di.repositoryModule
 import com.example.githubuser.di.useCaseModule
 import com.example.githubuser.di.viewModelModule
-import databaseModule
-import networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import repositoryModule
 
 class Application : Application() {
     override fun onCreate() {

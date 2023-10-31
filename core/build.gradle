@@ -15,7 +15,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-        buildConfigField("String", "KEY", '"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"')
+        buildConfigField("String", "KEY", '"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"')
         buildConfigField("String", "BASE_URL", '"https://api.github.com/"')
     }
 
@@ -34,11 +34,11 @@ android {
         buildConfig true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 }
 
