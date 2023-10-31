@@ -1,13 +1,15 @@
 version: 2.1
- 
+
 orbs:
   android: circleci/android@0.2.1
- 
+
 jobs:
   build:
     executor: android/android
     steps:
       - checkout
+      - setup-java: # Menambahkan langkah ini untuk mengatur Java 17
+          version: 17.0.1
       - restore_cache:
           key: android-orb-v1-
       - run:
