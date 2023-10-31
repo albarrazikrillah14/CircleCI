@@ -1,9 +1,9 @@
 package com.example.githubuser
 
 import android.app.Application
-import com.danrsy.rgithubuser.core.di.databaseModule
-import com.danrsy.rgithubuser.core.di.networkModule
-import com.danrsy.rgithubuser.core.di.repositoryModule
+import com.medomeckz.core.di.databaseModule
+import com.medomeckz.core.di.networkModule
+import com.medomeckz.core.di.repositoryModule
 import com.example.githubuser.di.useCaseModule
 import com.example.githubuser.di.viewModelModule
 import org.koin.android.ext.koin.androidContext

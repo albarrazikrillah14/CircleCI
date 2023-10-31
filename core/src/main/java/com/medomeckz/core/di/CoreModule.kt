@@ -1,4 +1,4 @@
-package com.danrsy.rgithubuser.core.di
+package com.medomeckz.core.di
 
 import androidx.room.Room
 import com.medomeckz.core.BuildConfig
